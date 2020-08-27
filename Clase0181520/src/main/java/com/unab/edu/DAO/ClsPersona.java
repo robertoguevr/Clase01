@@ -49,6 +49,7 @@ public class ClsPersona {
             Statement.setInt("PEdad", Per.getEdad());
             Statement.setString("PSexo", Per.getSexo());
             Statement.execute();
+            conectar.close();
             JOptionPane.showMessageDialog(null, "Datos Guardados");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -79,6 +80,7 @@ public class ClsPersona {
             Statement.setInt("Pedad", Persona.getEdad());
             Statement.setString("Psexo", Persona.getSexo());
             Statement.execute();
+            conectar.close();;
             JOptionPane.showMessageDialog(null, "Datos Actualizados");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);

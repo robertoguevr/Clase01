@@ -53,7 +53,7 @@ public class crudPersona extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tbMostrar = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_persona = new javax.swing.JTable();
@@ -86,6 +86,11 @@ public class crudPersona extends javax.swing.JFrame {
                 "ID", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_persona.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_personaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_persona);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -104,7 +109,7 @@ public class crudPersona extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Mostrar Datos", jPanel2);
+        tbMostrar.addTab("Mostrar Datos", jPanel2);
 
         jLabel1.setText("ID");
 
@@ -164,7 +169,7 @@ public class crudPersona extends javax.swing.JFrame {
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Operacion de CRUD", jPanel1);
+        tbMostrar.addTab("Operacion de CRUD", jPanel1);
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +206,7 @@ public class crudPersona extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1)
+                    .addComponent(tbMostrar)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(45, 45, 45)
@@ -217,7 +222,7 @@ public class crudPersona extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tbMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -265,6 +270,23 @@ public class crudPersona extends javax.swing.JFrame {
         Personas.ActualizarPersonas(Persona);
         MostrarTablaPersona();
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void tb_personaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_personaMouseClicked
+        tbMostrar.setSelectedIndex(tbMostrar.indexOfComponent(jPanel1));
+        
+        int fila = tb_persona.getSelectedRow();
+        
+        String ID = String.valueOf(tb_persona.getValueAt(fila, 0));
+        String nombre = String.valueOf(tb_persona.getValueAt(fila, 1));
+        String apellido = String.valueOf(tb_persona.getValueAt(fila, 2));
+        String edad = String.valueOf(tb_persona.getValueAt(fila, 3));
+        String sexo = String.valueOf(tb_persona.getValueAt(fila, 4));
+        txtId.setText(ID);
+        txtNombre.setText(nombre);
+        txtApellido.setText(apellido);
+        txtEdad.setText(edad);
+        txtSexo.setText(sexo);
+    }//GEN-LAST:event_tb_personaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -314,7 +336,7 @@ public class crudPersona extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane tbMostrar;
     private javax.swing.JTable tb_persona;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtEdad;
