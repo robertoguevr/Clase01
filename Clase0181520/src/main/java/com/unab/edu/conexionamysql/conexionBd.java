@@ -5,6 +5,7 @@
  */
 package com.unab.edu.conexionamysql;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -31,4 +32,5 @@ public class conexionBd {
     public Connection RetornarConexion(){
     return conexion;
     }
+
 }
