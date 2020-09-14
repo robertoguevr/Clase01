@@ -63,9 +63,9 @@ public class ClsPersonaEstudiante {
 
     }
       
-      public void BorrarPersona(Estudiante Est) {
+      public void BorrarEstudiante(Estudiante Est) {
         try {
-            CallableStatement Statement = con.prepareCall("call SP_D_Persona(?)");
+            CallableStatement Statement = con.prepareCall("call SP_D_Estudiante(?)");
 
             Statement.setInt("PIdPersonas", Est.getIdPersona());
 
@@ -77,9 +77,9 @@ public class ClsPersonaEstudiante {
         }
     }
       
-      public void ActualizarPersonas(Estudiante Estudiante) {
+      public void ActualizarEstudiantes(Estudiante Estudiante) {
        try {
-            CallableStatement Statement = con.prepareCall("call SP_U_Persona(?,?,?,?,?)");
+            CallableStatement Statement = con.prepareCall("call SP_U_Estudiante(?,?,?,?,?)");
             Statement.setInt("EIdEstudiante", Estudiante.getId());
             Statement.setInt("EMatricula", Estudiante.getMatricula());
             Statement.setString("EUsuario", Estudiante.getUsu());

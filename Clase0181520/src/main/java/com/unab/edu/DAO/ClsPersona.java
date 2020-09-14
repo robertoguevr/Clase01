@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.unab.edu.DAO;
-
 import com.unab.edu.Entidades.Persona;
 import com.unab.edu.conexionamysql.conexionBd;
 import java.sql.CallableStatement;
@@ -12,10 +6,6 @@ import java.sql.*;
 import java.util.*;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Roberto
- */
 public class ClsPersona {
 
     conexionBd claseConectar = new conexionBd();
