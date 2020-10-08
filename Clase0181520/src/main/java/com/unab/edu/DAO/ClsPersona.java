@@ -23,6 +23,7 @@ public class ClsPersona {
                 persona.setApellido(resultadoDeConsulta.getString("Apellido"));
                 persona.setEdad(resultadoDeConsulta.getInt("Edad"));
                 persona.setSexo(resultadoDeConsulta.getString("Sexo"));
+                persona.setFecha(resultadoDeConsulta.getDate("Fecha"));
                 Personas.add(persona);
             }
         } catch (Exception e) {
@@ -31,13 +32,14 @@ public class ClsPersona {
         return Personas;
     }
 
-    public void AgergarPersonas(Persona Per) {
+    public void AgregarPersonas(Persona Per) {
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?)");
+            CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?,?)");
             Statement.setString("PNombre", Per.getNombre());
             Statement.setString("PApellido", Per.getApellido());
             Statement.setInt("PEdad", Per.getEdad());
             Statement.setString("PSexo", Per.getSexo());
+            Statement.setDate("PFecha", new java.sql.Date(Per.getFecha().getTime()));
             Statement.execute();
             conectar.close();
             JOptionPane.showMessageDialog(null, "Datos Guardados");
