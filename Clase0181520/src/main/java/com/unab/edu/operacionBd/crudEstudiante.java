@@ -7,18 +7,19 @@ import com.unab.edu.Entidades.Estudiante;
 import com.unab.edu.Entidades.Persona;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class crudEstudiante extends javax.swing.JFrame {
 
     String valueMember[];
-    int contador = 0;
+    int contador = 1;
 
     void DisplayMember() {
         DefaultComboBoxModel cbdefault = new DefaultComboBoxModel();
         ClsPersona clasePersona = new ClsPersona();
         ArrayList<Persona> Personas = clasePersona.MostrarPersona();
-        valueMember = new String[Personas.size()+1];
+        valueMember = new String[Personas.size() + 1];
         String filas[] = new String[3];
         cbdefault.addElement("");
         for (var iterador : Personas) {
@@ -95,8 +96,8 @@ public class crudEstudiante extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnActualizar = new javax.swing.JButton();
         cbPersonas = new javax.swing.JComboBox<>();
+        btnNuevo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -146,17 +147,17 @@ public class crudEstudiante extends javax.swing.JFrame {
             }
         });
 
-        btnActualizar.setText("Actualizar");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
-            }
-        });
-
         cbPersonas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbPersonas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbPersonasActionPerformed(evt);
+            }
+        });
+
+        btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
             }
         });
 
@@ -166,29 +167,27 @@ public class crudEstudiante extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
-                            .addComponent(txtMatricula, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                            .addComponent(txtPassword)
-                            .addComponent(txtNIE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtUsuario)
-                            .addComponent(txtID)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(cbPersonas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(39, 341, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
-                        .addComponent(btnEliminar)
-                        .addGap(151, 151, 151)
-                        .addComponent(btnActualizar)
-                        .addGap(46, 46, 46))))
+                        .addComponent(btnNuevo)
+                        .addGap(117, 117, 117)
+                        .addComponent(btnGuardar))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1)
+                        .addComponent(txtMatricula, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                        .addComponent(txtPassword)
+                        .addComponent(txtNIE)
+                        .addComponent(jLabel3)
+                        .addComponent(txtUsuario)
+                        .addComponent(txtID)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel2)
+                        .addComponent(cbPersonas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(103, 103, 103)
+                .addComponent(btnEliminar)
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,12 +215,12 @@ public class crudEstudiante extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtNIE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNuevo)
                     .addComponent(btnGuardar)
-                    .addComponent(btnEliminar)
-                    .addComponent(btnActualizar))
-                .addGap(34, 34, 34))
+                    .addComponent(btnEliminar))
+                .addGap(0, 42, Short.MAX_VALUE))
         );
 
         tbMostrarDatos.addTab("Datos", jPanel1);
@@ -239,7 +238,7 @@ public class crudEstudiante extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tbMostrarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                .addComponent(tbMostrarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -247,27 +246,42 @@ public class crudEstudiante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        ClsPersonaEstudiante Estudiantes = new ClsPersonaEstudiante();
-        Estudiante Estudiante = new Estudiante();
-        Estudiante.setId(Integer.parseInt(valueMember[cbPersonas.getSelectedIndex()]));
-        Estudiante.setMatricula(Integer.parseInt(txtMatricula.getText()));
-        Estudiante.setUsu(txtUsuario.getText());
-        Estudiante.setPass(txtPassword.getText());
-        Estudiante.setNie(Integer.parseInt(txtNIE.getText()));
-        Estudiantes.AgregarEstudiantes(Estudiante);
-        MostrarTablaEstudiante();
+        try {
+            ClsPersonaEstudiante Estudiantes = new ClsPersonaEstudiante();
+            Estudiante Estudiante = new Estudiante();
+            Estudiante.setId(Integer.parseInt(valueMember[cbPersonas.getSelectedIndex()]));
+            Estudiante.setMatricula(Integer.parseInt(txtMatricula.getText()));
+            Estudiante.setUsu(txtUsuario.getText());
+            Estudiante.setPass(txtPassword.getText());
+            Estudiante.setNie(Integer.parseInt(txtNIE.getText()));
+            Estudiantes.AgregarEstudiantes(Estudiante);
+            if (txtID.getText().isEmpty()) {
+                Estudiantes.AgregarEstudiantes(Estudiante);
+            } else {
+                Estudiante.setId(Integer.parseInt(txtID.getText()));
+                Estudiantes.ActualizarEstudiantes(Estudiante);
+            }
+            MostrarTablaEstudiante();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error, verifique los datos");
+        }
+        btnNuevo.doClick();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        ClsPersonaEstudiante Estudiantes = new ClsPersonaEstudiante();
-        Estudiante Estudiante = new Estudiante();
-//        Estudiante.setId(Integer.parseInt(txtIdEstudiante.getText()));
-        Estudiantes.BorrarEstudiante(Estudiante);
-        MostrarTablaEstudiante();
+        try {
+            ClsPersonaEstudiante Estudiantes = new ClsPersonaEstudiante();
+            Estudiante Estudiante = new Estudiante();
+            Estudiantes.BorrarEstudiante(Estudiante);
+            MostrarTablaEstudiante();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error, verifique los datos");
+        }
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tbEstudianteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEstudianteMouseClicked
- tbMostrarDatos.setSelectedIndex(tbMostrarDatos.indexOfComponent(jPanel1));
+        tbMostrarDatos.setSelectedIndex(tbMostrarDatos.indexOfComponent(jPanel1));
         int fila = tbEstudiante.getSelectedRow();
         String ID = String.valueOf(tbEstudiante.getValueAt(fila, 0));
         String matricula = String.valueOf(tbEstudiante.getValueAt(fila, 1));
@@ -277,29 +291,41 @@ public class crudEstudiante extends javax.swing.JFrame {
         String pass = String.valueOf(tbEstudiante.getValueAt(fila, 5));
         String nie = String.valueOf(tbEstudiante.getValueAt(fila, 6));
 
-        //txtIdEstudiante.setText(ID);
         txtMatricula.setText(matricula);
         txtID.setText(IdPersona);
         txtUsuario.setText(usuario);
         txtPassword.setText(pass);
-        txtNIE.setText(nie);       
-    }//GEN-LAST:event_tbEstudianteMouseClicked
+        txtNIE.setText(nie);
 
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        ClsEstudiante estudiantes = new ClsEstudiante();
-        Estudiante estudiante = new Estudiante();
-        estudiante.setId(Integer.parseInt(txtID.getText()));
-        estudiante.setMatricula(Integer.parseInt(txtMatricula.getText()));
-        estudiante.setUsu(txtUsuario.getText());
-        estudiante.setPass(txtPassword.getText());
-        estudiante.setNie(Integer.parseInt(txtNIE.getText()));
-        estudiantes.ActualizarPersonas(estudiante);
-        MostrarTablaEstudiante();
-    }//GEN-LAST:event_btnActualizarActionPerformed
+//        int seleccionadordeVista = 0;
+//        for (var iterador : valueMember) {
+//            if (IdPersona.equals(iterador)) {
+//                cbPersonas.setSelectedIndex(seleccionadordeVista);
+//            }
+//            seleccionadordeVista += 1;
+//        }
+        int seleccionadordeVista = 0;
+        for (var it : valueMember) {
+
+            if (IdPersona.equals(it)) {
+                cbPersonas.setSelectedIndex(seleccionadordeVista);
+            }
+            seleccionadordeVista += 1;
+        }
+    }//GEN-LAST:event_tbEstudianteMouseClicked
 
     private void cbPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPersonasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbPersonasActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        txtID.setText("");
+        cbPersonas.setSelectedIndex(0);
+        txtMatricula.setText("");
+        txtNIE.setText("");
+        txtPassword.setText("");
+        txtUsuario.setText("");
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,9 +361,9 @@ public class crudEstudiante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.JComboBox<String> cbPersonas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
